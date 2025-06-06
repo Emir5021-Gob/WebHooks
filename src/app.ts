@@ -1,5 +1,5 @@
 import express from 'express'
-import { Enviroment } from './config';
+import { Enviroment } from './config/envs';
 import { GithubController } from './presentation/github/controller';
 
 (() => {
@@ -10,6 +10,8 @@ function main() {
 
     const app = express();
     const controller = new GithubController();
+
+    app.use(express.json() );
 
     app.post('/api/github', controller.webhookHandler);
 
